@@ -7,8 +7,8 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('production', function() {
-    this.route('dimension');
+  this.route('production', {path: '/:start/to/:end'}, function() {
+    this.route('dimension', {path: '/dimension/:dimension_id'} );
   });
 });
 
