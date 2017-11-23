@@ -27,7 +27,11 @@
                 <td class="quantity">
                     {{format-number row.boardfeet precision=2}}
                 </td>
-                <td><input type="checkbox" disabled={{eq row.boards 10}}></td>
+                <td>
+                    {{#link-to "production.dimension" row.DimensionID}}
+                        {{fa-icon 'search'}}
+                    {{/link-to}}
+                </td>
             </tr>
         {{/each}}
     </tbody>
