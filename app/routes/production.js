@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import Route from '@ember/routing/route';
-import Production from 'looplog/models/production';
+//import Production from 'looplog/models/production';
 import moment from 'moment';
 
-const Promise = Ember.RSVP.Promise;
+//const Promise = Ember.RSVP.Promise;
 
 export default Route.extend({
     model(params) {
@@ -15,19 +15,21 @@ export default Route.extend({
         // }
         // return Ember.$.getJSON(`/data/production.json?start=${params.start}&end=${params.end}`);
         this.set('params', params);
-        return new Promise(function(resolve) {
-          setTimeout(function() {
-            let data = Ember.$.getJSON(`/data/production.json?starts_at=${params.start}&ends_at=${params.end}`);
-            data.then(function(data) {
-              let records = [];
-              data.forEach(function(item) {
-                records.push( Production.create(item) );
-              });
-              resolve(records);
-            })
-          }, 400);
-        });
+        // return new Promise(function(resolve) {
+        //   setTimeout(function() {
+        //     let data = Ember.$.getJSON(`/data/production.json?starts_at=${params.start}&ends_at=${params.end}`);
+        //     data.then(function(data) {
+        //       let records = [];
+        //       data.forEach(function(item) {
+        //         records.push( Production.create(item) );
+        //       });
+        //       resolve(records);
+        //     })
+        //   }, 400);
+        // });
+        return this.get('mystore').production(params.start, params.end);
     },
+    //mystore: Ember.inject.service('mystore'),
     setupController(controller, model) {
         this._super(controller, model);
         let params = this.get('params');

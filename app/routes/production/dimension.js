@@ -1,9 +1,10 @@
 import Ember from 'ember';
-import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default Ember.Route.extend({
+    //mystore: Ember.inject.service(),
     model(params) {
-        return this.modelFor('production')
-            .findBy('DimensionID', parseInt(params.dimension_id));
+        // return this.modelFor('production')
+        //     .findBy('DimensionID', parseInt(params.dimension_id));
+        return this.get('mystore').dimension(params.dimension_id);
     }
 });
