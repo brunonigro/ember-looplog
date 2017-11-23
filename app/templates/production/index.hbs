@@ -8,6 +8,12 @@
         </tr>
     </thead>
     <tbody>
+        <tr class="total">
+            <td>All Dimensions</td>
+            <td>{{total_boards}}</td>
+            <td>{{format-number total_boardfeet precision=2}}</td>
+            <td></td>
+        </tr>
         {{#each model as |row|}}
             <tr class="{{row-class row}}">
                 <td>
@@ -16,12 +22,12 @@
                     {{/link-to}}
                 </td>
                 <td class="quantity">
-                    {{row.BoardsSum}}
+                    {{row.boards}}
                 </td>
                 <td class="quantity">
-                    {{format-number row.BoardFeetSum precision=2}}
+                    {{format-number row.boardfeet precision=2}}
                 </td>
-                <td><input type="checkbox" disabled={{eq row.BoardsSum 10}}></td>
+                <td><input type="checkbox" disabled={{eq row.boards 10}}></td>
             </tr>
         {{/each}}
     </tbody>
