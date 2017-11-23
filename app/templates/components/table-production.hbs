@@ -1,37 +1,32 @@
-
-    <thead>
-        <tr>
-            {{table-th name="Dimension"}}
-            {{table-th name="Boards"}}
-            {{table-th name="BoardFeet"}}
-            {{#table-th}}{{fa-icon "cogs"}}{{/table-th}}
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="total">
-            <td>All Dimensions</td>
-            <td>{{total_boards}}</td>
-            <td>{{format-number total_boardfeet precision=2}}</td>
-            <td></td>
-        </tr>
-        {{#each model as |row|}}
-            <tr class="{{row-class row}}">
-                <td>
-                    {{#link-to "production.dimension" row.DimensionID}}
-                        {{row.DimensionName}}
-                    {{/link-to}}
-                </td>
-                <td class="quantity">
-                    {{row.boards}}
-                </td>
-                <td class="quantity">
-                    {{format-number row.boardfeet precision=2}}
-                </td>
-                <td>
-                    {{#link-to "production.dimension" row.DimensionID}}
-                        {{fa-icon 'search'}}
-                    {{/link-to}}
-                </td>
-            </tr>
-        {{/each}}
-    </tbody>
+  <thead>
+    <tr>
+      {{table-th current_sort=sort_by name="Dimension" sort_by="default" sort_data=(action 'sort_data')}}
+      {{table-th current_sort=sort_by name="Boards" sort_by="boards" sort_data=(action 'sort_data')}}
+      {{table-th current_sort=sort_by name="BoardFeet" sort_by="boardfeet" sort_data=(action 'sort_data')}}
+      {{#table-th}}{{fa-icon "cogs"}}{{/table-th}}
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="total">
+      <td>All Dimensions</td>
+      <td>{{total_boards}}</td>
+      <td>{{format-number total_boardfeet precision=2}}</td>
+      <td></td>
+    </tr>
+    {{#each sorted_model as |row|}}
+      <tr class="{{row-class row}}">
+        <td>
+          {{#link-to "production.dimension" row.DimensionID}}
+            {{row.DimensionName}}
+          {{/link-to}}
+        </td>
+        <td class="quantity">{{row.boards}}</td>
+        <td class="quantity">{{format-number row.boardfeet precision=2}}</td>
+        <td>
+          {{#link-to "production.dimension" row.DimensionID}}
+            {{fa-icon 'search'}}
+          {{/link-to}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
